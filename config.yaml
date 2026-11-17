@@ -1,0 +1,63 @@
+# Site Sentinel - configuração da Luuna (URLs confirmadas no site)
+interval: 60
+timeout: 20
+confirm_failures: 2
+report_time: "08:00"
+timezone: America/Sao_Paulo
+confirm_failures_actions: 1   # no GitHub Actions o agente reconfere após 15 s, então 1 basta
+
+sites:
+  - name: Home
+    url: https://www.luuna.com.br/
+    interval: 30
+    slow_ms: 3000
+    expect_text: "Colchões Luuna"
+    max_redirects: 3
+    check_links: true
+    links_limit: 40
+    browser: true
+    browser_interval: 600
+    lcp_ms: 4000
+    ignore_hosts: &ign [google-analytics.com, googletagmanager.com, facebook.net, doubleclick.net, hotjar.com, clarity.ms]
+
+  - name: Colchões
+    url: https://www.luuna.com.br/colchoes
+    interval: 60
+    expect_text: "Luuna"
+    check_links: true
+    browser: true
+    browser_interval: 900
+    ignore_hosts: *ign
+
+  - name: Camas
+    url: https://www.luuna.com.br/camas
+    interval: 60
+    expect_text: "Luuna"
+
+  - name: Promoções
+    url: https://www.luuna.com.br/promocoes
+    interval: 30          # página crítica na Black Luuna
+    expect_text: "Luuna"
+    browser: true
+    browser_interval: 600
+    ignore_hosts: *ign
+
+  - name: Produto - Colchão Original
+    url: https://www.luuna.com.br/comprar/colchao-original
+    interval: 30          # produto mais vendido
+    slow_ms: 3000
+    expect_text: "Luuna Original"
+    browser: true
+    browser_interval: 600
+    ignore_hosts: *ign
+
+  - name: Lojas
+    url: https://www.luuna.com.br/loja-de-colchoes
+    interval: 120
+    expect_text: "Luuna"
+
+  - name: Redirect sem www
+    url: http://luuna.com.br/
+    interval: 300
+    max_redirects: 3
+    expect_final: https://www.luuna.com.br/
