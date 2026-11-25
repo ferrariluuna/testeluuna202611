@@ -1,0 +1,3 @@
+Coloque aqui os arquivos CSV exportados do Google Search Console (relatório Páginas > Exportar > Baixar CSV).
+O agente lê todas as URLs do domínio dentro deles e junta com as do sitemap.
+Arquivos .xlsx não são lidos: exporte como CSV.

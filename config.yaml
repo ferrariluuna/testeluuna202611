@@ -61,3 +61,14 @@ sites:
     interval: 300
     max_redirects: 3
     expect_final: https://www.luuna.com.br/
+
+# Catálogo: checa TODAS as páginas do site em lotes rotativos (SEO: 404, noindex, redirect, lentidão...)
+catalog:
+  enabled: true
+  sitemaps: []          # vazio = descobre sozinho (robots.txt e /sitemap.xml)
+  gsc_dir: gsc          # CSVs exportados do Google Search Console (opcional)
+  urls_file: urls.txt   # URLs extras, uma por linha (opcional)
+  per_run: 60           # páginas checadas por rodada (catálogo inteiro roda em ciclos)
+  max_urls: 5000
+  slow_ms: 3000
+  exclude: ["/checkout", "/carrinho", "/cart", "/login", "/minha-conta"]
